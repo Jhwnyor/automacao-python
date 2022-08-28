@@ -6,6 +6,7 @@ authors = ["Jhwnyor <franciscohp0007@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+playwright = "^1.25.2"
 
 [tool.poetry.dev-dependencies]
 
