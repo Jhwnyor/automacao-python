@@ -1,8 +1,8 @@
 from playwright.sync_api import sync_playwright
-from utils.settings import settings, settings_input
+from utils.settings import settings, settings_input, settings_button
 
 
-def login(email: str, senha: str):
+def login():
     """Faz login no instagram"""
 
     with sync_playwright() as p:
@@ -14,15 +14,10 @@ def login(email: str, senha: str):
         # isso faz ele esperar 700 millesimos de segundos
         page.wait_for_timeout(700)
 
-        # TODO colocar esses caras no .env e usar o InputsSettings para pegar
-        input_email = "//html/body/div[1]/section/main/article/div[2]/div[1]/div[2]/form/div/div[1]/div/label/input"
-        input_senha = "//html/body/div[1]/section/main/article/div[2]/div[1]/div[2]/form/div/div[2]/div/label/input"
-        button_login = "//html/body/div[1]/section/main/article/div[2]/div[1]/div[2]/form/div/div[3]"
-
-        page.fill(input_email, settings_input.EMAIL)
-        page.fill(input_senha, senha)
-
-        page.click(button_login)
+        page.fill(settings_input.INPUT_EMAIL, settings.EMAIL)
+        page.fill(settings_input.INPUT_SENHA, settings.SENHA)
+        
+        page.click(settings_button.BUTTON_LOGIN)
 
         # espera 10 seg, tirar depois
         page.wait_for_timeout(10000)
